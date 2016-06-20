@@ -39,6 +39,7 @@ while True:
 		elif(Letter not in TheWord):
 			if HangIndex>=6:
 				print("\n\nHANGED")
+				print("\nThe Word is : "+TheWord+'\n\n')
 				quit()
 			Used.append(Letter)
 			HangList.pop(HangIndex)
