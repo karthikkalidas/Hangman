@@ -13,7 +13,6 @@ ListLength=len(WordsList)
 #Getting a random word from list
 TheWord=WordsList[randint(0,ListLength-1)].upper()
 TheWordLength=len(TheWord)
-print(TheWord+'\n')
 
 CurWord =['_']*TheWordLength
 Used=[]
@@ -24,28 +23,38 @@ HangIndex=0
 while True:
 
 	if ''.join(CurWord)==TheWord:
-		print("Won")
-		break	
+		print("\n\nWON")
+		break
 
 	Letter=input('Guess A Letter: ').upper()
 
-	if Letter in TheWord:
-		LetterIndex=TheWord.index(Letter)
-		CurWord.pop(LetterIndex)
-		CurWord.insert(LetterIndex,Letter)
+	for i in range(0,(TheWordLength)):
+		
+		if (Letter==TheWord[i]):	
+			LetterIndex=i
+			CurWord.pop(LetterIndex)
+			CurWord.insert(LetterIndex,Letter)
+				
 
+		elif(Letter not in TheWord):
+			if HangIndex>=6:
+				print("\n\nHANGED")
+				quit()
+			Used.append(Letter)
+			HangList.pop(HangIndex)
+			HangIndex+=1
+			HangList.insert(HangIndex,'|')
+			break
 
-	else:
-		Used.append(Letter)
-		HangList.pop(HangIndex)
-		HangIndex+=1
-		HangList.insert(HangIndex,'|')
+		i+=1
+
 
 	print('Word: ',end="")
 	print(*CurWord, sep='')
 	print('Used: ',end="")
 	print(*Used, sep='')
 	print(*HangList, sep='')
+	print('\n\n')
 
 
 
