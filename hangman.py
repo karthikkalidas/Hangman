@@ -19,14 +19,16 @@ Used=[]
 HangList=list('|HANGMAN')
 HangIndex=0
 
-
 while True:
+
+	text = "\rWord:{}\nUsed:{}\n{}\n".format(''.join(CurWord),''.join(Used),''.join(HangList))
+	sys.stdout.write(text)
+	sys.stdout.flush()
+	Letter=input('Please guess the letter:').upper()
 
 	if ''.join(CurWord)==TheWord:
 		print("\n\nWON")
 		break
-
-	Letter=input('Guess A Letter: ').upper()
 
 	for i in range(0,(TheWordLength)):
 		
@@ -49,14 +51,9 @@ while True:
 
 		i+=1
 
-
-	print('Word: ',end="")
-	print(*CurWord, sep='')
-	print('Used: ',end="")
-	print(*Used, sep='')
-	print(*HangList, sep='')
-	print('\n\n')
+	
+	
 
 
-
+	
 
