@@ -18,42 +18,49 @@ CurWord =['_']*TheWordLength
 Used=[]
 HangList=list('|HANGMAN')
 HangIndex=0
+Letter=""
 
-while True:
+text = "\rWord: {}\nUsed: {}\n{}\n".format(''.join(CurWord),''.join(Used),''.join(HangList))
+sys.stdout.write(text)
+sys.stdout.flush()
 
-	text = "\rWord:{}\nUsed:{}\n{}\n".format(''.join(CurWord),''.join(Used),''.join(HangList))
-	sys.stdout.write(text)
-	sys.stdout.flush()
-	Letter=input('Please guess the letter:').upper()
+while True:    
 
-	if ''.join(CurWord)==TheWord:
-		print("\n\nWON")
-		break
+    Letter=input("Please guess the next letter: ").upper()
 
-	for i in range(0,(TheWordLength)):
-		
-		if (Letter==TheWord[i]):	
-			LetterIndex=i
-			CurWord.pop(LetterIndex)
-			CurWord.insert(LetterIndex,Letter)
-				
+    if ''.join(CurWord)==TheWord:
+        print("\n\nWON")
+        break
 
-		elif(Letter not in TheWord):
-			if HangIndex>=6:
-				print("\n\nHANGED")
-				print("\nThe Word is : "+TheWord+'\n\n')
-				quit()
-			Used.append(Letter)
-			HangList.pop(HangIndex)
-			HangIndex+=1
-			HangList.insert(HangIndex,'|')
-			break
+    for i in range(0,(TheWordLength)):
 
-		i+=1
-
-	
-	
+        if (Letter==TheWord[i]):	
+            LetterIndex=i
+            CurWord.pop(LetterIndex)
+            CurWord.insert(LetterIndex,Letter)
 
 
-	
+        elif(Letter not in TheWord):
+            if HangIndex>=6:
+                print("\n\nHANGED")
+                print("\nThe Word is : "+TheWord+'\n\n')
+                quit()
+            Used.append(Letter)
+            HangList.pop(HangIndex)
+            HangIndex+=1
+            HangList.insert(HangIndex,'|')
+            break
+
+        i+=1
+
+
+
+
+    
+
+
+
+
+
+
 
