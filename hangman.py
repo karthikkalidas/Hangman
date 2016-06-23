@@ -1,5 +1,6 @@
 from __future__ import print_function
 import sys
+import os
 import subprocess
 from random import randint
 
@@ -20,12 +21,13 @@ HangList=list('|HANGMAN')
 HangIndex=0
 Letter=""
 
-text = "\rWord: {}\nUsed: {}\n{}\n".format(''.join(CurWord),''.join(Used),''.join(HangList))
-sys.stdout.write(text)
-sys.stdout.flush()
+
 
 while True:    
 
+    text = "\rWord: {}\nUsed: {}\n{}\n".format(''.join(CurWord),''.join(Used),''.join(HangList))
+    os.system('clear')
+    sys.stdout.write(text)
     Letter=input("Please guess the next letter: ").upper()
 
     if ''.join(CurWord)==TheWord:
@@ -38,7 +40,7 @@ while True:
             LetterIndex=i
             CurWord.pop(LetterIndex)
             CurWord.insert(LetterIndex,Letter)
-
+ 
 
         elif(Letter not in TheWord):
             if HangIndex>=6:
