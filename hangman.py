@@ -11,32 +11,36 @@ with open("Words.txt", 'r') as WordsListFile:
 
 #Taking no. of words
 ListLength=len(WordsList)
+
 #Getting a random word from list
 TheWord=WordsList[randint(0,ListLength-1)].upper()
 TheWordLength=len(TheWord)
 
+#Using lists and other such variables for creating the interface
 CurWord =['_']*TheWordLength
 Used=[]
 HangList=list('|HANGMAN')
 HangIndex=0
 Letter=""
 
-
-
-while True:    
-
+#Print function for the interface
+def interface():
     text = "\rWord: {}\nUsed: {}\n{}\n".format(''.join(CurWord),''.join(Used),''.join(HangList))
     os.system('clear')
     sys.stdout.write(text)
-    Letter=input("Please guess the next letter: ").upper()
 
+#Final check for the word match
+def finalfn():
     if ''.join(CurWord)==TheWord:
         print("\n\nWON")
-        break
+        quit()
 
+#Checks the letter and changes the lists
+def letterfn():
+    global HangIndex
     for i in range(0,(TheWordLength)):
 
-        if (Letter==TheWord[i]):	
+        if (Letter==TheWord[i]):    
             LetterIndex=i
             CurWord.pop(LetterIndex)
             CurWord.insert(LetterIndex,Letter)
@@ -55,6 +59,16 @@ while True:
 
         i+=1
 
+while True:    
+    interface()
+    finalfn()
+    Letter=input("Please guess the next letter: ").upper()
+    letterfn()
+
+
+    
+
+    
 
 
 
